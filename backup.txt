@@ -53,13 +53,15 @@ Este artigo apresenta uma análise de laudos periciais de animais coletados pelo
 
 \section{Introdução}
 
-A população mundial está concentrada, em sua maioria, em regiões costeiras. As características destas regiões proporcionam um alto desenvolvimento econômico por meio de indústrias, ocupação portuária, exploração petrolífera, pesca, turismo, dentre outros \cite{mma:zcmu}. No entanto, a alta concentração demográfica e o modelo de produção acelerado trazem, também, impactos negativos, principalmente ao meio ambiente \cite{mma:zcmu, mma:pngc}. 
+A população mundial está concentrada, em sua maioria, em regiões costeiras. As características destas regiões proporcionam um alto desenvolvimento econômico por meio de indústrias, ocupação portuária, exploração petrolífera, pesca, turismo, dentre outros \cite{mma:zcmu}. No entanto, a alta concentração demográfica e o modelo de produção acelerado trazem, também, impactos negativos, principalmente ao meio ambiente \cite{mma:zcmu, mma:pngc}.
 
-Proporcional ao crescimento socioeconômico tem-se o aumento da poluição de corpos d'água e ocupação desordenada do solo. A fauna destas regiões é bastante sensível às alterações no ambiente, sofrendo com problemas de derramamento de óleo, contaminação por metais pesados, poluição e destruição de áreas de reprodução \cite{mma:zcmu,scherer:litoral}. A poluição das regiões costeiras e sua fauna é alvo de crescente preocupação mundial. No Brasil, para a obtenção de licenciamento ambiental, o IBAMA exige a aplicação de programas que visem avaliar e controlar os impactos causados pela exploração de recursos naturais \cite{mma:pngc, petrobras:pmp}. 
+Proporcional ao crescimento socioeconômico tem-se o aumento da poluição de corpos d'água e ocupação desordenada do solo. A fauna destas regiões é bastante sensível às alterações no ambiente, sofrendo com problemas de derramamento de óleo, contaminação por metais pesados, poluição e destruição de áreas de reprodução \cite{mma:zcmu,scherer:litoral}.
+
+A poluição das regiões costeiras e sua fauna é alvo de crescente preocupação mundial. No Brasil, para a obtenção de licenciamento ambiental, o IBAMA exige a aplicação de programas que visem avaliar e controlar os impactos causados pela exploração de recursos naturais \cite{mma:pngc, petrobras:pmp}. 
 
 Neste contexto, o Projeto de Monitoramento de Praias da Bacia de Santos (PMP-BS) é uma atividade que está relacionada ao processo de licenciamento da PETROBRAS. Este projeto tem como objetivo, por meio do monitoramento das praias e atendimento veterinário, avaliar possíveis interferências das atividades de produção e escoamento de petróleo e gás natural sobre animais tetrápodes marinhos \cite{univali:pmp,petrobras:anual1}.
 
-Todos os animais vivos encontrados durante o monitoramento são avaliados e recebem atendimento veterinário caso necessário. Após o tratamento, são reavaliados e marcados antes da liberação, permitindo o acompanhamento em caso de reaparecimento. Para os animais encontrados mortos ou que venham a morrer durante o processo de reabilitação, são realizadas necrópsias para tentar identificar o motivo do óbito e se houve interação antrópica - interação causada por interferência humana \cite{univali:pmp, petrobras:anual1}. 
+Todos os animais vivos encontrados durante o monitoramento são avaliados e recebem atendimento veterinário caso necessário. Após o tratamento, são reavaliados e marcados antes da liberação, permitindo o acompanhamento em caso de reaparecimento. Para os animais encontrados mortos ou que venham a morrer durante o processo de reabilitação, são realizadas necrópsias para tentar identificar o motivo do óbito e se houve interação antrópica - interação causada por interferência humana \cite{univali:pmp, petrobras:anual1}.
 
 No entanto, uma das grandes dificuldades do processo são as condições de coleta dos animais, uma vez que em alguns casos o estado de decomposição e/ou a predação dos mesmos impede que se consiga obter dados confiáveis. Em espécies muito comuns, dá-se prioridade para os indivíduos em melhor estado de conservação \cite{petrobras:pmp, petrobras:anual1}.
 
@@ -85,29 +87,29 @@ Os resultados, mostram que a área de ocorrência atual destas plantas é consid
 
 \section{Desenvolvimento}
 
-Os dados utilizados neste artigo foram coletados pelo Projeto de Monitoramento de Praias da Bacia de Santos (PMP-BS). A base original contém um total de 24.875 registros de indivíduos necropsiados, compreendendo o período de agosto de 2015 à outubro de 2019. Estes registros são apresentados através de 111 variáveis que descrevem o processo desde o momento da coleta até o descarte da carcaça.
+Os dados utilizados neste artigo foram coletados pelo PMP-BS. A base original contém um total de 24.875 registros de indivíduos necropsiados, compreendendo o período de agosto de 2015 a outubro de 2019. Estes registros são apresentados através de 111 variáveis que descrevem o processo desde o momento da coleta até o descarte da carcaça.
 
 Todo o desenvolvimento foi executado utilizando a linguagem R e pacotes que auxiliam na limpeza e apresentação de dados, bem como pacotes para aplicação de algoritmos de aprendizagem de máquina. Nesta seção são detalhados alguns destes processos.
 
-\subsection{Análise Exploratória e Limpeza dos Dados}
+\subsection{Análise e Limpeza dos Registros}
 
 A compreensão dos dados contidos na base é bastante importante para a construção de bons modelos. Esta seção destina-se a apresentar o processo de conhecimento e limpeza dos dados, desde o processo de descarte de variáveis não necessárias ao modelo, até a extração de informações de variáveis complexas. 
 
-\subsubsection{Análise Exploratória Geral}
+\subsubsection{Primeira Análise}
 
 Após uma primeira análise das informações, 41 variáveis foram descartadas, uma vez que se referem a identificadores do PMP-BS que não apresentam influência no processo de classificação dos dados.
 
-Do total de registros, 17.633 foram alvos de predição nesta pesquisa pois não apresentarem informação sobre interação com o ser humano, não sendo possível utilizá-los para treinar os modelos. Os demais registros foram classificados em dois grupos, sendo estes: (\textit{i}) indivíduos que apresentaram apenas \emph{um} tipo de interação antrópica classificada pelo veterinário no ato da necrópsia, e; (\textit{ii}) indivíduos que apresentaram \emph{múltiplas} interações antrópicas classificadas pelo veterinário no ato da necrópsia.
+Do total de registros, 17.633 são o alvo desta pesquisa por não apresentarem informação sobre interação com o ser humano, não sendo possível utilizá-los para treinar os modelos. Os demais registros foram classificados em dois grupos, sendo: (i) Indivíduos que apresentaram UMA interação antrópica; e (ii) Indivíduos que apresentaram MÚLTIPLAS interações antrópicas.
 
-Desta forma e para este estudo, foram considerados apenas registros do primeiro grupo, resultando em um total de 6.178 registros a serem utilizados nos modelos de classificação.
+Para este primeiro estudo, foram considerados apenas registros do primeiro grupo, o que resultou em um total de 6.178 registros a serem utilizados nos modelos classificadores.
 
-\subsubsection{Covariáveis com Estruturação Complexa/Mista}
+\subsubsection{Variáveis com Múltiplas Informações}
 
-Algumas covariáveis da base apresentavam múltiplas informações, ou informações com estrutura complexa, em geral, campos abertos com definições múltiplas e/ou difusas. Desta forma, foi a abordagem proposta e utilizada neste estudo foi a de segregar os dados em \textit{n} outras variáveis, sendo:
+Algumas variáveis da base apresentavam múltiplas informações, de forma que foi necessário separar estas informações em \textit{n} outras variáveis, sendo:
 
 A variável \say{interacoes\_antropicas} apresentava informações de tipo e nível da interação e foi dividida em \say{interacao\_tipo} e \say{interacao\_nivel}.
 
-As variáveis \say{cavidades\_corporeas}, \say{tecido\_cutaneo\_e\_subcutaneo},  \say{sistema\_musculo\_esqueletico}, \say{sistema\_respiratorio}, \say{sistema\_cardiovascular}, \say{aparato\_digestorio}, \say{sistema\_urinario}, \say{sistema\_reprodutivo}, \say{sistema\_linfo\_hematopoietico}, \say{sistema\_endocrino}, \say{orgaos\_dos\_sentidos} e \say{sistema\_nervoso\_central} apresentavam três informações distintas, sendo: (\textit{i}) \textit{Status}, indicando se houve alteração; (\textit{ii}) Motivo, descrevendo o porquê de o órgão não ter sido examinado; e (\textit{iii}) Análise, descrevendo possíveis alterações no órgão. Estas foram divididas conforme tabela \ref{tab:spread_variaveis}.
+As variáveis \say{cavidades\_corporeas}, \say{tecido\_cutaneo\_e\_subcutaneo},  \say{sistema\_musculo\_esqueletico}, \say{sistema\_respiratorio}, \say{sistema\_cardiovascular}, \say{aparato\_digestorio}, \say{sistema\_urinario}, \say{sistema\_reprodutivo}, \say{sistema\_linfo\_hematopoietico}, \say{sistema\_endocrino}, \say{orgaos\_dos\_sentidos} e \say{sistema\_nervoso\_central} apresentavam três informações distintas, sendo: (i) \textit{Status}, indicando se houve alteração; (ii) Motivo, descrevendo o porquê de o órgão não ter sido examinado; e (iii) Análise, descrevendo possíveis alterações no órgão. Estas foram divididas conforme tabela \ref{tab:spread_variaveis}.
 
 \begin{table}[ht]
 \centering
@@ -120,11 +122,11 @@ As variáveis \say{cavidades\_corporeas}, \say{tecido\_cutaneo\_e\_subcutaneo}, 
 
 Como a maioria dos dados são apresentados de forma textual, foram necessários alguns tratamentos para eliminar possíveis inconsistências entre registros. Todos os valores foram convertidos para letras minúsculas, removendo acentuações e pontuações.
 
-Após a aplicação dos tratamentos ainda foi realizada a conversão das colunas identificadas como \emph{caracter} para o tipo \emph{fator}, assim permitindo a verificação da correlação entre as variáveis a serem utilizadas no modelo.
+Após a aplicação dos tratamentos ainda foi realizada a conversão das colunas identificadas como \textit{chr} para o tipo \textit{factor}, assim permitindo a verificação da correlação entre as variáveis a serem utilizadas no modelo.
 
 \subsubsection{Variáveis com Dados Vazios ou Nulos}
 
-Após estes tratamentos, foi observado que algumas variáveis não apresentavam dados - caraterizando a perda de dados ou \textit{missing data}. Sendo que, para as variáveis \say{diagnostico\_presuntivo\_lesao\_principal\_orgao}, \say{diagnostico\_presuntivo\_lesao\_principal\_causa}, \say{diagnostico\_primario\_lesao\_principal\_orgao}, \say{diagnostico\_primario\_lesao\_principal\_causa} e \say{presenca\_de\_residuos\_solidos} os dados vazios foram alterados para \say{indeterminado}, permitindo analisar alguns padrões importantes.  As demais variáveis foram convertidas para \textit{NA} ou \textit{Not Available}.
+Após estes tratamentos, foi observado que algumas variáveis apresentavam textos vazios. Sendo que, para as variáveis \say{diagnostico\_presuntivo\_lesao\_principal\_orgao}, \say{diagnostico\_presuntivo\_lesao\_principal\_causa}, \say{diagnostico\_primario\_lesao\_principal\_orgao}, \say{diagnostico\_primario\_lesao\_principal\_causa} e \say{presenca\_de\_residuos\_solidos} os dados vazios foram alterados para \say{indeterminado}, permitindo analisar alguns padrões importantes.  As demais variáveis foram convertidas para \textit{NA}.
 
 Verificou-se, conforme demonstrado na figura \ref{fig:pre_missing_data}, o percentual de ausência de dados para cada variável que poderia ser utilizada no modelo. Consideram-se variáveis boas aquelas que possuem um baixo percentual de dados ausentes (até 5\%). As demais variáveis foram descartadas, uma vez que o percentual de ausência é superior a 40\%, comprometendo, assim, as análises dos modelos.
 
@@ -214,9 +216,9 @@ Para encontrar o melhor modelo, foram testados diversos conjuntos de parâmetros
 
 \textit{Support Vector Machine (SVM)} é um modelo que tem por objetivo encontrar um hiperplano que classifique distintamente os pontos de dados. Estes hiperplanos são os limites que separam grupos disintos de elementos e, os pontos mais próximos dos limites são chamados de vetores de suporte e são elementos de maior complexidade de classificação. O SVM faz uso destes vetores de suporte para encontrar a melhor divisão possível entre os grupos. Sendo capaz de classificar os registros com base na proximidade com os limites definidos \cite{lantz:mlinR, rodrigues:wildfire}.
 
-Configurar um bom modelo SVM exige a compreensão de uma quantidade considerável de parâmetros. Desta forma, sua otimização possui maior complexidade em relação aos demais modelos citados. Para o propósito desta pesquisa, o SVM foi calibrado utilizando o método \textit{svmPoly} do pacote \textit{caret}. Este método faz uso do \textit{kernel = \say{polynomial}} e aceita três parâmetros de otimização, sendo: (\textit{i}) \textit{degree}, indicando a flexibilidade dos limites de decisão entre os grupos; (\textit{ii}) \textit{scale}, relacionado à distribuição dos dados no plano; e (\textit{iii}) \textit{C}, especifica um custo para definir os vetores de suporte \cite{lantz:mlinR}.
+Configurar um bom modelo SVM exige a compreensão de uma quantidade considerável de parâmetros. Desta forma, sua otimização possui maior complexidade em relação aos demais modelos citados. Para o propósito desta pesquisa, o SVM foi calibrado utilizando o método \textit{svmPoly} do pacote \textit{caret}. Este método faz uso do \textit{kernel = \say{polynomial}} e aceita três parâmetros de otimização, sendo: (i) \textit{degree}, indicando a flexibilidade dos limites de decisão entre os grupos; (ii) \textit{scale}, relacionado à distribuição dos dados no plano; e (iii) \textit{C}, especifica um custo para definir os vetores de suporte \cite{lantz:mlinR}.
 
-A parametrização do modelo foi realizada de forma a aplicar todas as combinações entre \textit{degree} (1, 2 e 3), \textit{scale} (0,001, 0,010 e 0,100) e \textit{C} (0,25, 0,50 e 1,00), obtendo o modelo mais favorável utilizando \textit{degree = 2}, \textit{scale = 0,1} e \textit{C = 0,25}. 
+A parametrização do modelo foi realizada de forma a aplicar todas as combinações entre \textit{degree} (1, 2 e 3), \textit{scale} (0.001, 0.010 e 0.100) e \textit{C} (0.25, 0.50 e 1.00), obtendo o modelo mais favorável utilizando \textit{degree = 2}, \textit{scale = 0.1} e \textit{C = 0.25}. 
 
 \section{Resultados}
 
@@ -224,7 +226,7 @@ Esta seção tem por objetivo apresentar os resultados obtidos e considerar a es
 
 \subsection{Performance dos Modelos}
 
-Conforme apresentado na Tabela \ref{tab:performance_modelos}, os modelos RF e DT obtiveram performances bastante consideráveis. O modelo RF apresentou, de acordo com o intervalo de confiança, uma acurácia entre 89,88\% e 91,65\%. O modelo SVM também apresentou performance satisfatória, atingindo uma acurácia média de 81,55\%. Dentre os modelos analisados, o NB apresentou o pior desempenho, não atingindo valores superiores a 71,30\%.
+Conforme apresentado na tabela \ref{tab:performance_modelos}, os modelos RF e DT obtiveram performances bastante consideráveis. O modelo RF apresentou, de acordo com o intervalo de confiança, uma acurácia entre 89.88\% e 91.65\%. O modelo SVM também apresentou performance satisfatória, atingindo uma acurácia média de 81.55\%. Dentre os modelos analisados, o NB apresentou o pior desempenho, não atingindo valores superiores a 71.30\%.
 
 \begin{table}[ht]
 \centering
@@ -233,7 +235,7 @@ Conforme apresentado na Tabela \ref{tab:performance_modelos}, os modelos RF e DT
 \includegraphics[width=.8\textwidth]{performance_modelos.png}
 \end{table}
 
-Ainda em relação a performance dos modelos, é interessante considerar o tempo de obtenção dos resultados ótimos para cada algoritmo. Observa-se, por exemplo, que para obter acurácia média de 90,79\%, o RF demorou pouco mais de 67 minutos (4028 segundos), enquanto que o DT necessitou de 8 minutos (481 segundos) para obter uma performance similar. Dependendo da aplicabilidade do modelo, um pequeno ganho de acurácia pode não justificar o aumento no custo computacional para obtenção do modelo final.
+Ainda em relação a performance dos modelos, é interessante considerar o tempo de obtenção dos resultados ótimos para cada algoritmo. Observa-se, por exemplo, que para obter acurácia média de 90.79\%, o RF demorou pouco mais de 67 minutos (4028 segundos), enquanto que o DT necessitou de 8 minutos (481 segundos) para obter uma performance similar. Dependendo da aplicabilidade do modelo, um pequeno ganho de acurácia pode não justificar o aumento no custo computacional para obtenção do modelo final.
 
 Outro ponto a ser considerado, é a complexidade da parametrização dos modelos SVM. Mesmo com uma configuração básica, o modelo conseguiu resultados expressivos. Um estudo mais aprofundado do funcionamento do algoritmo pode contribuir com um aumento significativo de performance.
 
